@@ -69,14 +69,14 @@ public class MetricHandler {
     /**
      * private string metric used to get the details of the resource.
      */
-    private AbstractStringMetric aMetric = new BlockDistance();
+    private static AbstractStringMetric aMetric = new BlockDistance();
 
     /**
      * gets the metrics available in the jar or filepath.
      *
      * @return an ArrayList of Strings containing metric names
      */
-    public ArrayList<String> GetMetricsAvailable() {
+    public static ArrayList<String> GetMetricsAvailable() {
 
         ArrayList<String> outputVect = new ArrayList<String>();
 

@@ -43,12 +43,12 @@ import java.io.Serializable;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.similaritymetrics.chapmanmeanlength
- * Description: chapmanmeanlength implements a
+ * Description: chapmanmeanlength implements a simple mean length metric, i.e. strings of the similar lengths are more similar regardless of the content.
 
  * Date: 26-Mar-2004
  * Time: 14:15:54
  * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
- * @version 1.1
+ * @version 1.2
  */
 public final class ChapmanMeanLength extends AbstractStringMetric implements Serializable {
 

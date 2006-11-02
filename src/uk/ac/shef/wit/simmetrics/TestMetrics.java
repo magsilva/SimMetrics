@@ -1,10 +1,10 @@
 package uk.ac.shef.wit.simmetrics;
 
 import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.*;
+import uk.ac.shef.wit.simmetrics.metrichandlers.MetricHandler;
 
 import java.text.DecimalFormat;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Package: n/a
@@ -102,34 +102,22 @@ public final class TestMetrics {
      */
     public static void main(final String[] args) {
 
-        //now do metric tests
-        final Vector<AbstractStringMetric> testMetricVector = new Vector<AbstractStringMetric>();
-        testMetricVector.add(new ChapmanOrderedNameCompoundSimilarity());
-        testMetricVector.add(new Levenshtein());
-        testMetricVector.add(new NeedlemanWunch());
-        testMetricVector.add(new SmithWaterman());
-        testMetricVector.add(new ChapmanLengthDeviation());
-        testMetricVector.add(new ChapmanMeanLength());
-        testMetricVector.add(new SmithWatermanGotoh());
-        testMetricVector.add(new SmithWatermanGotohWindowedAffine());
-        testMetricVector.add(new BlockDistance());
-        testMetricVector.add(new MongeElkan());
-        testMetricVector.add(new Jaro());
-        testMetricVector.add(new JaroWinkler());
-        testMetricVector.add(new Soundex());
-        testMetricVector.add(new ChapmanMatchingSoundex());
-        testMetricVector.add(new MatchingCoefficient());
-        testMetricVector.add(new DiceSimilarity());
-        testMetricVector.add(new JaccardSimilarity());
-        testMetricVector.add(new OverlapCoefficient());
-        testMetricVector.add(new EuclideanDistance());
-        testMetricVector.add(new CosineSimilarity());
-        testMetricVector.add(new QGramsDistance());
-        testMetricVector.add(new TagLink());
-        testMetricVector.add(new TagLinkToken());
+        ArrayList<String> metricStrings = MetricHandler.GetMetricsAvailable();
 
+        //now create each metric in an ArrayList
+        final ArrayList<AbstractStringMetric> testMetricArrayList = new ArrayList<AbstractStringMetric>();
+        for(String metricString : metricStrings) {
+            testMetricArrayList.add(MetricHandler.createMetric(metricString));
+        }
         //test metrics
-        testMethod(testMetricVector, args);
+        testMethod(testMetricArrayList, args);
+    }
+
+    public static void Usage() {
+        System.out.println("Usage: testMethod \"String1 to Test\" \"String2 to test\"");
+        System.out.println("or");
+        System.out.println("Usage: testMethod \"timing");
+        System.out.println("AS NO INPUT - running defualt test cases\n");
     }
 
     /**
@@ -138,7 +126,7 @@ public final class TestMetrics {
      * @param metricVector
      * @param args         arguments vector
      */
-    private static void testMethod(final Vector<AbstractStringMetric> metricVector, final String[] args) {
+    private static void testMethod(final ArrayList<AbstractStringMetric> metricVector, final String[] args) {
 
         boolean useCmdArgs = false;
         boolean testTimingComplexity = false;
@@ -147,10 +135,7 @@ public final class TestMetrics {
         } else if (args.length == 2) {
             useCmdArgs = true;
         } else {
-            System.out.println("Usage: testMethod \"String1 to Test\" \"String2 to test\"");
-            System.out.println("or");
-            System.out.println("Usage: testMethod \"timing");
-            System.out.println("AS NO INPUT - running defualt test cases\n");
+            Usage();
         }
 
         //first detail tests being performed
