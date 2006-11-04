@@ -1,4 +1,44 @@
 /**
+ * SimMetrics - SimMetrics is a java library of Similarity or Distance
+ * Metrics, e.g. Levenshtein Distance, that provide float based similarity
+ * measures between String Data. All metrics return consistant measures
+ * rather than unbounded similarity scores.
+ *
+ * Copyright (C) 2005 Sam Chapman - Open Source Release v1.1
+ *
+ * Please Feel free to contact me about this library, I would appreciate
+ * knowing quickly what you wish to use it for and any criticisms/comments
+ * upon the SimMetric library.
+ *
+ * email:       s.chapman@dcs.shef.ac.uk
+ * www:         http://www.dcs.shef.ac.uk/~sam/
+ * www:         http://www.dcs.shef.ac.uk/~sam/stringmetrics.html
+ *
+ * address:     Sam Chapman,
+ *              Department of Computer Science,
+ *              University of Sheffield,
+ *              Sheffield,
+ *              S. Yorks,
+ *              S1 4DP
+ *              United Kingdom,
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ */
+
+/**
+ * Specific details about this metric
  * <p>Title: </p> TagLink string distance
  *
  * <p>Description: </p> This is a Hybrid string metric. Token scores are
@@ -6,9 +46,6 @@
  * Matched token pairs are defined by Algorithm1.
  * This hybrid string distance follows notation as described in Camacho & Salhi 2006.
  *
- * <p>Copyright: Copyright (c) 2005</p>
- *
- * @author Horacio Camacho
  * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>. (modified code to optermise update to generics and 1.5 and to fit in SimMetrics)
  *
  * email:       jhcama@essex.ac.uk
@@ -33,7 +70,9 @@ import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
 import java.io.Serializable;
 import java.util.*;
 
-
+/**
+ * TagLink inplements a TagLink String Metric.
+ */
 public final class TagLink extends AbstractStringMetric implements Serializable {
 
     /**
@@ -65,6 +104,18 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
      */
     public TagLink() {
         this(DEFAULT_METRIC);
+        //WARNING FROM AUTHOR OF SIMMETRICS
+        // this metric is not recomended for fast processing it has been added
+        // by a third party into the library and from the source is an extremely
+        // unoptermised process the library author does not recomend its usage
+        // if you do take the time to perfect this code I will gladly update its
+        // source - thanks Sam
+
+        System.out.println("WARNING - this metric is not recomended for fast processing it has been added \n" +
+                " by a third party into the library and from the source is an extremely \n" +
+                " unoptermised process the library author does not recomend its usage \n" +
+                " if you do take the time to perfect this code I will gladly update its\n" +
+                " source - thanks Sam");
     }
 
     /**
@@ -75,6 +126,18 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
     public TagLink(AbstractStringMetric characterBasedStringMetric) {
         this.characterBasedStringMetric = characterBasedStringMetric;
         tokeniser = new TokeniserWhitespace();
+        //WARNING FROM AUTHOR OF SIMMETRICS
+        // this metric is not recomended for fast processing it has been added
+        // by a third party into the library and from the source is an extremely
+        // unoptermised process the library author does not recomend its usage
+        // if you do take the time to perfect this code I will gladly update its
+        // source - thanks Sam
+
+        System.out.println("WARNING - this metric is not recomended for fast processing it has been added \n" +
+                " by a third party into the library and from the source is an extremely \n" +
+                " unoptermised process the library author does not recomend its usage \n" +
+                " if you do take the time to perfect this code I will gladly update its\n" +
+                " source - thanks Sam");
     }
 
 
@@ -86,6 +149,18 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
      */
     public TagLink(String[] dataSetArray) {
         this(dataSetArray, DEFAULT_METRIC);
+        //WARNING FROM AUTHOR OF SIMMETRICS
+        // this metric is not recomended for fast processing it has been added
+        // by a third party into the library and from the source is an extremely
+        // unoptermised process the library author does not recomend its usage
+        // if you do take the time to perfect this code I will gladly update its
+        // source - thanks Sam
+
+        System.out.println("WARNING - this metric is not recomended for fast processing it has been added \n" +
+                " by a third party into the library and from the source is an extremely \n" +
+                " unoptermised process the library author does not recomend its usage \n" +
+                " if you do take the time to perfect this code I will gladly update its\n" +
+                " source - thanks Sam");
     }
 
     /**
@@ -100,6 +175,18 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
         this.characterBasedStringMetric = characterBasedStringMetric;
         tokeniser = new TokeniserWhitespace();
         this.idfMap = getIDFMap(dataSetArray);
+        //WARNING FROM AUTHOR OF SIMMETRICS
+        // this metric is not recomended for fast processing it has been added
+        // by a third party into the library and from the source is an extremely
+        // unoptermised process the library author does not recomend its usage
+        // if you do take the time to perfect this code I will gladly update its
+        // source - thanks Sam
+
+        System.out.println("WARNING - this metric is not recomended for fast processing it has been added \n" +
+                " by a third party into the library and from the source is an extremely \n" +
+                " unoptermised process the library author does not recomend its usage \n" +
+                " if you do take the time to perfect this code I will gladly update its\n" +
+                " source - thanks Sam");
     }
 
     /**
@@ -155,6 +242,20 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
      * @return float
      */
     public float getSimilarity(String T, String U) {
+
+        //WARNING FROM AUTHOR OF SIMMETRICS
+        // this metric is not recomended for fast processing it has been added
+        // by a third party into the library and from the source is an extremely
+        // unoptermised process the library author does not recomend its usage
+        // if you do take the time to perfect this code I will gladly update its
+        // source - thanks Sam
+
+        System.out.println("WARNING - this metric is not recomended for fast processing it has been added \n" +
+                " by a third party into the library and from the source is an extremely \n" +
+                " unoptermised process the library author does not recomend its usage \n" +
+                " if you do take the time to perfect this code I will gladly update its\n" +
+                " source - thanks Sam");
+
         if (T.equals(U)) {
             return 1.0f;
         } else {
