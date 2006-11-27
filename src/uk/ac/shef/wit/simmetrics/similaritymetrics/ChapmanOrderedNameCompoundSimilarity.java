@@ -41,10 +41,9 @@ package uk.ac.shef.wit.simmetrics.similaritymetrics;
 
 import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Description: ChapmanOrderedNameCompoundSimilarity tests similarity upon the most similar in terms of token based
@@ -136,9 +135,9 @@ public final class ChapmanOrderedNameCompoundSimilarity extends AbstractStringMe
     public float getSimilarityTimingEstimated(final String string1, final String string2) {
         //timed millisecond times with string lengths from 1 + 50 each increment
         //0.08	2.26	8.16	16.92	29	51	67.67	93.67	117	156.5	187.5	234	266	312	375	422	485	547	609	656	766	828	906	1000	1078	1157	1265	1360	1453	1562	1688	1781	1891	2031	2094	2219	2422	2532	2656	2812	2938	3109	3250	3407	3562	3750	3907	4062	4250	4422	4625	4797	4985	5188	5390	5578	5782	5984	6204	6437
-        final float str1Tokens = tokeniser.tokenize(string1).size();
-        final float str2Tokens = tokeniser.tokenize(string2).size();
-        return (tokeniser.tokenize(string1).size() + tokeniser.tokenize(string2).size()) * ((str1Tokens+str2Tokens) * ESTIMATEDTIMINGCONST);
+        final float str1Tokens = tokeniser.tokenizeToArrayList(string1).size();
+        final float str2Tokens = tokeniser.tokenizeToArrayList(string2).size();
+        return (tokeniser.tokenizeToArrayList(string1).size() + tokeniser.tokenizeToArrayList(string2).size()) * ((str1Tokens+str2Tokens) * ESTIMATEDTIMINGCONST);
     }
 
     /**
@@ -151,8 +150,8 @@ public final class ChapmanOrderedNameCompoundSimilarity extends AbstractStringMe
      */
     public final float getSimilarity(final String string1, final String string2) {
         //split the strings into tokens for comparison
-        final Vector str1Tokens = tokeniser.tokenize(string1);
-        final Vector str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList str2Tokens = tokeniser.tokenizeToArrayList(string2);
         int str1TokenNum = str1Tokens.size();
         int str2TokenNum = str2Tokens.size();
         int minTokens = Math.min(str1TokenNum, str2TokenNum);

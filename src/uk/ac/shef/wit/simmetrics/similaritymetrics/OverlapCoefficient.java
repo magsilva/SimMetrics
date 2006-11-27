@@ -41,11 +41,10 @@ package uk.ac.shef.wit.simmetrics.similaritymetrics;
 
 import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 /**
@@ -127,8 +126,8 @@ public final class OverlapCoefficient extends AbstractStringMetric implements Se
     public float getSimilarityTimingEstimated(final String string1, final String string2) {
         //timed millisecond times with string lengths from 1 + 50 each increment
         //0	0.01	0.03	0.05	0.07	0.11	0.14	0.18	0.23	0.27	0.33	0.38	0.46	0.51	0.59	0.67	0.75	0.86	0.94	1.01	1.15	1.22	1.5	1.45	1.93	1.7	2.28	1.95	2.42	2.21	2.99	2.54	3.34	2.86	3.76	3.17	4.06	3.5	4.32	3.9	5.23	4.32	5.34	4.83	6.15	5.07	6.34	5.64	7.29	5.97	8.12	6.55	8.46	7	8.83	7.52	9.71	8.12	10.68	8.46
-        final float str1Tokens = tokeniser.tokenize(string1).size();
-        final float str2Tokens = tokeniser.tokenize(string2).size();
+        final float str1Tokens = tokeniser.tokenizeToArrayList(string1).size();
+        final float str2Tokens = tokeniser.tokenizeToArrayList(string2).size();
         return (str1Tokens * str2Tokens) * ESTIMATEDTIMINGCONST;
     }
 
@@ -142,13 +141,13 @@ public final class OverlapCoefficient extends AbstractStringMetric implements Se
      * @return a value between 0-1 of the similarity
      */
     public float getSimilarity(final String string1, final String string2) {
-        final Vector str1Tokens = tokeniser.tokenize(string1);
-        final Vector str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
-        final Set allTokens = new HashSet();
+        final Set<String> allTokens = new HashSet<String>();
         allTokens.addAll(str1Tokens);
         final int termsInString1 = allTokens.size();
-        final Set secondStringTokens = new HashSet();
+        final Set<String> secondStringTokens = new HashSet<String>();
         secondStringTokens.addAll(str2Tokens);
         final int termsInString2 = secondStringTokens.size();
 

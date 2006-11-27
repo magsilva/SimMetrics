@@ -49,14 +49,14 @@ import java.io.Serializable;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.tokenisers
- * Description: TokeniserQGram3 implements a QGram Tokeniser.
+ * Description: TokeniserQGram2 implements a QGram Tokeniser.
 
- * Date: 05-Apr-2004
+ * Date: 25-Nov-2006
  * Time: 14:07:24
  * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
  * @version 1.1
  */
-public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
+public final class TokeniserQGram2 implements InterfaceTokeniser, Serializable {
 
     /**
      * stopWordHandler used by the tokenisation.
@@ -69,7 +69,7 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
      * @return the tokenisation method
      */
     public final String getShortDescriptionString() {
-        return "TokeniserQGram3";
+        return "TokeniserQGram2";
     }
 
     /**
@@ -106,9 +106,9 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
     public final ArrayList<String> tokenizeToArrayList(final String input) {
         final ArrayList<String> returnArrayList = new ArrayList<String>();
         int curPos = 0;
-        final int length = input.length() - 2;
+        final int length = input.length() - 1;
         while (curPos < length) {
-            final String term = input.substring(curPos, curPos + 3);
+            final String term = input.substring(curPos, curPos + 2);
             if(!stopWordHandler.isWord(term)) {
                 returnArrayList.add(term);
             }

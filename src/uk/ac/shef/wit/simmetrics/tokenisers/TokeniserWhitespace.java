@@ -41,11 +41,10 @@ package uk.ac.shef.wit.simmetrics.tokenisers;
 
 import uk.ac.shef.wit.simmetrics.wordhandlers.InterfaceTermHandler;
 import uk.ac.shef.wit.simmetrics.wordhandlers.DummyStopTermHandler;
-import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 /**
@@ -109,8 +108,8 @@ public final class TokeniserWhitespace implements InterfaceTokeniser, Serializab
      * @param input
      * @return tokenized version of a string
      */
-    public final Vector tokenize(final String input) {
-        final Vector returnVect = new Vector();
+    public final ArrayList<String> tokenizeToArrayList(final String input) {
+        final ArrayList<String> returnVect = new ArrayList<String>();
         int curPos = 0;
         while (curPos < input.length()) {
             final char ch = input.charAt(curPos);
@@ -127,7 +126,7 @@ public final class TokeniserWhitespace implements InterfaceTokeniser, Serializab
             }
             //add new token
             final String term = input.substring(curPos, nextGapPos);
-            if(!stopWordHandler.isWord(term) && !term.equals(" ")) {
+            if(!stopWordHandler.isWord(term) && !term.trim().equals("")) {
                 returnVect.add(term);
             }
             curPos = nextGapPos;
@@ -142,9 +141,9 @@ public final class TokeniserWhitespace implements InterfaceTokeniser, Serializab
      * @param input
      * @return tokenized set of a string
      */
-    public Set tokenizeToSet(final String input) {
-        final Set returnSet = new HashSet();
-        returnSet.addAll(tokenize(input));
+    public Set<String> tokenizeToSet(final String input) {
+        final Set<String> returnSet = new HashSet<String>();
+        returnSet.addAll(tokenizeToArrayList(input));
         return returnSet;
     }
 }

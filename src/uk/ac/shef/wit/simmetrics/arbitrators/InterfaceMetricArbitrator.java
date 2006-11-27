@@ -41,7 +41,7 @@ package uk.ac.shef.wit.simmetrics.arbitrators;
 
 import uk.ac.shef.wit.simmetrics.similaritymetrics.InterfaceStringMetric;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.api
@@ -58,13 +58,13 @@ public interface InterfaceMetricArbitrator {
      * gets the arbitration metrics used.
      * @return a vector of InterfaceStringMetric's used in the arbitration
      */
-    public Vector getArbitrationMetrics();
+    public ArrayList<InterfaceStringMetric> getArbitrationMetrics();
 
     /**
      * set arbitration metrics with those given.
      * @param arbitrationMetrics a vector of InterfaceStringMetric's to be used in the arbitration
      */
-    public void setArbitrationMetrics(Vector<InterfaceStringMetric> arbitrationMetrics);
+    public void setArbitrationMetrics(ArrayList<InterfaceStringMetric> arbitrationMetrics);
 
     /**
      * adds an individual arbitration metric.
@@ -76,7 +76,7 @@ public interface InterfaceMetricArbitrator {
      * adds a vector of InterfaceStringMetric's to those used for arbitration.
      * @param arbitrationMetrics a vectro of InterfaceStringMetric's to added to those used for arbitration.
      */
-    public void addArbitrationMetrics(Vector<InterfaceStringMetric> arbitrationMetrics);
+    public void addArbitrationMetrics(ArrayList<InterfaceStringMetric> arbitrationMetrics);
 
     /**
      * removes all arbitration metrics.

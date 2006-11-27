@@ -39,65 +39,53 @@
 
 package uk.ac.shef.wit.simmetrics.tokenisers;
 
-import uk.ac.shef.wit.simmetrics.wordhandlers.InterfaceTermHandler;
+import junit.framework.TestCase;
 
-import java.util.Set;
-import java.util.Vector;
 import java.util.ArrayList;
 
 /**
- * Package: uk.ac.shef.wit.simmetrics.api
- * Description: InterfaceTokeniser interface for a Tokeniser class.
- * Date: 31-Mar-2004
- * Time: 15:09:09
- *
- * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
- * @version 1.1
+ * Created by IntelliJ IDEA.
+ * User: Administrator
+ * Date: 23-Nov-2006
+ * Time: 12:04:10
+ * To change this template use File | Settings | File Templates.
  */
-public interface InterfaceTokeniser {
+public class TokeniserQGram3Test  extends TestCase {
 
     /**
-     * displays the tokenisation method.
-     *
-     * @return short description string
+     * internal tokeniser.
      */
-    public String getShortDescriptionString();
+    private InterfaceTokeniser tokeniser = null;
 
     /**
-     * displays the delimitors used - (if applicable).
+     * Sets up the test fixture.
      *
-     * @return string for the delimitors used - (if applicable) "" otherwise
+     * Called before every test case method.
      */
-    public String getDelimiters();
+    protected void setUp() {
+        tokeniser = new TokeniserQGram3();
+    }
 
     /**
-     * gets the stop word handler used.
-     * @return the stop word handler used
+     * Tears down the test fixture.
+     *
+     * Called after every test case method.
      */
-    public InterfaceTermHandler getStopWordHandler();
+    protected void tearDown() {
+        // release objects under test here, if necessary
+    }
 
     /**
-     * sets the stop word handler used with the handler given.
-     * @param stopWordHandler the given stop word hanlder
+     * Tests emptying the cart.
      */
-    public void setStopWordHandler(InterfaceTermHandler stopWordHandler);
-
-    /**
-     * Return tokenized version of a string as an ArrayList.
-     *
-     * @param input
-     *
-     * @return ArrayList tokenized version of a string
-     */
-    public ArrayList<String> tokenizeToArrayList(String input);
-
-    /**
-     * Return tokenized version of a string as a set.
-     *
-     * @param input
-     *
-     * @return tokenized version of a string as a set
-     */
-    public Set<String> tokenizeToSet(String input);
+    public void testTokeniseToArrayList() {
+        ArrayList results = tokeniser.tokenizeToArrayList("12345678");
+        assertEquals(6, results.size());
+        assertEquals("123", results.get(0));
+        assertEquals("234", results.get(1));
+        assertEquals("345", results.get(2));
+        assertEquals("456", results.get(3));
+        assertEquals("567", results.get(4));
+        assertEquals("678", results.get(5));
+    }
 }
-

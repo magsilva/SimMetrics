@@ -259,10 +259,10 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
         if (T.equals(U)) {
             return 1.0f;
         } else {
-            Vector<String> tVector = tokeniser.tokenize(T);
-            Vector<String> uVector = tokeniser.tokenize(U);
-            String[] tTokens = tVector.toArray(new String[tVector.size()]),
-                    uTokens = uVector.toArray(new String[uVector.size()]);
+            ArrayList<String> tArrayList = tokeniser.tokenizeToArrayList(T);
+            ArrayList<String> uArrayList = tokeniser.tokenizeToArrayList(U);
+            String[] tTokens = tArrayList.toArray(new String[tArrayList.size()]),
+                    uTokens = uArrayList.toArray(new String[uArrayList.size()]);
             float[] tIdfArray = getIDFArray(tTokens),
                     uIdfArray = getIDFArray(uTokens);
             return algorithm1(tTokens, uTokens, tIdfArray, uIdfArray);
@@ -316,10 +316,10 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
         if (T.equals(U)) {
             buff.append("\nS(T,U)=1.0\n");
         } else {
-            Vector<String> tVector = tokeniser.tokenize(T);
-            Vector<String> uVector = tokeniser.tokenize(U);
-            String[] tTokens = tVector.toArray(new String[tVector.size()]),
-                    uTokens = uVector.toArray(new String[uVector.size()]);
+            ArrayList<String> tArrayList = tokeniser.tokenizeToArrayList(T);
+            ArrayList<String> uArrayList = tokeniser.tokenizeToArrayList(U);
+            String[] tTokens = tArrayList.toArray(new String[tArrayList.size()]),
+                    uTokens = uArrayList.toArray(new String[uArrayList.size()]);
             buff.append("\nT={");
             for (String tToken : tTokens) {
                 buff.append(tToken).append(", ");
@@ -547,8 +547,8 @@ public final class TagLink extends AbstractStringMetric implements Serializable 
             HashMap<String,Object> rowMap = new HashMap<String, Object>();
             HashMap<String,Float> freqMap = new HashMap<String, Float>();
             String actualRow = dataSetArray[row];
-            Vector<String> tokenVector = tokeniser.tokenize(actualRow);
-            String[] rowArray = tokenVector.toArray(new String[tokenVector.size()]);
+            ArrayList<String> tokenArrayList = tokeniser.tokenizeToArrayList(actualRow);
+            String[] rowArray = tokenArrayList.toArray(new String[tokenArrayList.size()]);
             for (String actualToken : rowArray) {
                 rowMap.put(actualToken, null);
 

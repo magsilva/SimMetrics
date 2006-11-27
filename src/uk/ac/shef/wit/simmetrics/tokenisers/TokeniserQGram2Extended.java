@@ -49,14 +49,15 @@ import java.io.Serializable;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.tokenisers
- * Description: TokeniserQGram3 implements a QGram Tokeniser.
+ * Description: TokeniserQGram2Extended implements a tokeniser splitting the string into qGrams
+ * extending beyond the ends of the string input, using padding characters.
 
- * Date: 05-Apr-2004
- * Time: 14:07:24
+ * Date: 25-Nov-2006
+ * Time: 14:58:35
  * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
  * @version 1.1
  */
-public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
+public final class TokeniserQGram2Extended implements InterfaceTokeniser, Serializable {
 
     /**
      * stopWordHandler used by the tokenisation.
@@ -64,28 +65,22 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
     private InterfaceTermHandler stopWordHandler = new DummyStopTermHandler();
 
     /**
+     * padding used in q gram calculation.
+     */
+    private final char QGRAMSTARTPADDING = '#';
+
+    /**
+     * padding used in q gram calculation.
+     */
+    private final char QGRAMENDPADDING = '#';
+
+    /**
      * displays the tokenisation method.
      *
      * @return the tokenisation method
      */
     public final String getShortDescriptionString() {
-        return "TokeniserQGram3";
-    }
-
-    /**
-     * gets the stop word handler used.
-     * @return the stop word handler used
-     */
-    public InterfaceTermHandler getStopWordHandler() {
-        return stopWordHandler;
-    }
-
-    /**
-     * sets the stop word handler used with the handler given.
-     * @param stopWordHandler the given stop word hanlder
-     */
-    public void setStopWordHandler(final InterfaceTermHandler stopWordHandler) {
-        this.stopWordHandler = stopWordHandler;
+        return "TokeniserQGram2Extended";
     }
 
     /**
@@ -105,10 +100,14 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
      */
     public final ArrayList<String> tokenizeToArrayList(final String input) {
         final ArrayList<String> returnArrayList = new ArrayList<String>();
+        final StringBuffer adjustedString = new StringBuffer();
+        adjustedString.append(QGRAMSTARTPADDING);
+        adjustedString.append(input);
+        adjustedString.append(QGRAMENDPADDING);
         int curPos = 0;
-        final int length = input.length() - 2;
+        final int length = adjustedString.length() - 1;
         while (curPos < length) {
-            final String term = input.substring(curPos, curPos + 3);
+            final String term = adjustedString.substring(curPos, curPos + 2);
             if(!stopWordHandler.isWord(term)) {
                 returnArrayList.add(term);
             }
@@ -116,6 +115,22 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
         }
 
         return returnArrayList;
+    }
+
+    /**
+     * gets the stop word handler used.
+     * @return the stop word handler used
+     */
+    public InterfaceTermHandler getStopWordHandler() {
+        return stopWordHandler;
+    }
+
+    /**
+     * sets the stop word handler used with the handler given.
+     * @param stopWordHandler the given stop word hanlder
+     */
+    public void setStopWordHandler(final InterfaceTermHandler stopWordHandler) {
+        this.stopWordHandler = stopWordHandler;
     }
 
     /**

@@ -45,7 +45,7 @@ import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.similaritymetrics.blockdistance
@@ -126,8 +126,8 @@ public final class BlockDistance extends AbstractStringMetric implements Seriali
     public float getSimilarityTimingEstimated(final String string1, final String string2) {
         //timed millisecond times with string lengths from 1 + 50 each increment
         //0	0.03	0.04	0.08	0.13	0.19	0.26	0.34	0.44	0.54	0.67	0.78	0.92	1.07	1.24	1.38	1.6	1.77	2.01	2.15	2.39	2.64	2.86	3.12	3.38	3.69	4.08	4.72	6.15	5.8	5.21	6.77	5.97	7.52	6.8	8.83	7.81	9.23	8.46	11.28	9.23	11.94	10.2	13.53	11.28	13.53	12.69	15.62	13.53	16.92	14.57	18.45	15.62	20.3	16.92	22.56	16.92	25.5	18.45	25.38
-        final float str1Tokens = tokeniser.tokenize(string1).size();
-        final float str2Tokens = tokeniser.tokenize(string2).size();
+        final float str1Tokens = tokeniser.tokenizeToArrayList(string1).size();
+        final float str2Tokens = tokeniser.tokenizeToArrayList(string2).size();
         return (((str1Tokens + str2Tokens) * str1Tokens) + ((str1Tokens + str2Tokens) * str2Tokens)) * ESTIMATEDTIMINGCONST;
     }
 
@@ -140,8 +140,8 @@ public final class BlockDistance extends AbstractStringMetric implements Seriali
      * @return a 0-1 similarity score
      */
     public float getSimilarity(final String string1, final String string2) {
-        final Vector<String> str1Tokens = tokeniser.tokenize(string1);
-        final Vector<String> str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
         final float totalPossible = (float)(str1Tokens.size() + str2Tokens.size());
 
@@ -157,8 +157,8 @@ public final class BlockDistance extends AbstractStringMetric implements Seriali
      * @return a block distance similarity score
      */
     public float getUnNormalisedSimilarity(final String string1, final String string2) {
-        final Vector<String> str1Tokens = tokeniser.tokenize(string1);
-        final Vector<String> str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
         final Set<Object> allTokens = new HashSet<Object>();
         allTokens.addAll(str1Tokens);

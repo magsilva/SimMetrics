@@ -41,11 +41,10 @@ package uk.ac.shef.wit.simmetrics.similaritymetrics;
 
 import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 /**
@@ -127,8 +126,8 @@ public final class JaccardSimilarity extends AbstractStringMetric implements Ser
     public float getSimilarityTimingEstimated(final String string1, final String string2) {
         //timed millisecond times with string lengths from 1 + 50 each increment
         //0	0.02	0.03	0.05	0.07	0.11	0.14	0.18	0.23	0.27	0.34	0.38	0.45	0.51	0.59	0.67	0.75	0.83	0.94	1	1.15	1.22	1.49	1.46	1.93	1.69	2.11	1.95	2.42	2.21	2.87	2.51	3.27	2.86	3.69	3.22	3.9	3.5	4.74	3.9	4.95	4.23	5.49	4.72	5.8	5.21	6.38	5.64	7.25	5.97	7.81	6.55	8.46	7	9.27	7.52	10.15	8.12	10.15	8.46
-        final float str1Tokens = tokeniser.tokenize(string1).size();
-        final float str2Tokens = tokeniser.tokenize(string2).size();
+        final float str1Tokens = tokeniser.tokenizeToArrayList(string1).size();
+        final float str2Tokens = tokeniser.tokenizeToArrayList(string2).size();
         return (str1Tokens * str2Tokens) * ESTIMATEDTIMINGCONST;
     }
 
@@ -150,13 +149,13 @@ where (X*Y) is the inner product of X and Y, and |X| = (X*X)^1/2, i.e. the Eucli
 This can more easily be described as ( |X & Y| ) / ( | X or Y | )
 */
         //todo this needs checking
-        final Vector str1Tokens = tokeniser.tokenize(string1);
-        final Vector str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
-        final Set allTokens = new HashSet();
+        final Set<String> allTokens = new HashSet<String>();
         allTokens.addAll(str1Tokens);
         final int termsInString1 = allTokens.size();
-        final Set secondStringTokens = new HashSet();
+        final Set<String> secondStringTokens = new HashSet<String>();
         secondStringTokens.addAll(str2Tokens);
         final int termsInString2 = secondStringTokens.size();
 

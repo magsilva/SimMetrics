@@ -43,7 +43,7 @@ import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.similaritymetrics.mongeelkan
@@ -152,8 +152,8 @@ public class MongeElkan extends AbstractStringMetric implements Serializable {
     public float getSimilarityTimingEstimated(final String string1, final String string2) {
         //timed millisecond times with string lengths from 1 + 50 each increment
         //0	5.97	11.94	27.38	50.75	73	109.5	148	195.5	250	297	375	437	500	594	672	781	875	969	1079	1218	1360	1469	1609	1750	1906	2063	2203	2375	2563	2734	2906	3110	3312	3500	3688	3906	4141	4375	4594	4844	5094	5328	5609	5860	6156	6422	6688	6984	7235	7547	7859	8157	8500	8813	9172	9484	9766	10125	10516
-        final float str1Tokens = tokeniser.tokenize(string1).size();
-        final float str2Tokens = tokeniser.tokenize(string2).size();
+        final float str1Tokens = tokeniser.tokenizeToArrayList(string1).size();
+        final float str2Tokens = tokeniser.tokenizeToArrayList(string2).size();
         return (((str1Tokens + str2Tokens) * str1Tokens) + ((str1Tokens + str2Tokens) * str2Tokens)) * ESTIMATEDTIMINGCONST;
     }
 
@@ -166,8 +166,8 @@ public class MongeElkan extends AbstractStringMetric implements Serializable {
      */
     public final float getSimilarity(final String string1, final String string2) {
         //split the strings into tokens for comparison
-        final Vector<String> str1Tokens = tokeniser.tokenize(string1);
-        final Vector<String> str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
         float sumMatches = 0.0f;
         float maxFound;

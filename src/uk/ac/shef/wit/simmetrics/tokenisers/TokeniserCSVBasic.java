@@ -49,14 +49,15 @@ import java.io.Serializable;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.tokenisers
- * Description: TokeniserQGram3 implements a QGram Tokeniser.
+ * Description: TokeniserCSVBasic implements a simple CSV tokeniser.
+ * NB(this doesn't consider embedded escaped comma's within the fields)
 
- * Date: 05-Apr-2004
- * Time: 14:07:24
+ * Date: 31-Mar-2004
+ * Time: 15:17:07
  * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
  * @version 1.1
  */
-public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
+public final class TokeniserCSVBasic implements InterfaceTokeniser, Serializable {
 
     /**
      * stopWordHandler used by the tokenisation.
@@ -64,12 +65,26 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
     private InterfaceTermHandler stopWordHandler = new DummyStopTermHandler();
 
     /**
+     * priavte delimitors for commas within a CSV file.
+     */
+    private final String delimiters = ",";
+
+    /**
      * displays the tokenisation method.
      *
      * @return the tokenisation method
      */
     public final String getShortDescriptionString() {
-        return "TokeniserQGram3";
+        return "TokeniserCSVBasic";
+    }
+
+    /**
+     * displays the delimiters used .
+     *
+     * @return the delimiters used
+     */
+    public final String getDelimiters() {
+        return delimiters;
     }
 
     /**
@@ -89,16 +104,7 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
     }
 
     /**
-     * displays the delimiters used  - ie none.
-     *
-     * @return the delimiters used - i.e. none ""
-     */
-    public final String getDelimiters() {
-        return "";
-    }
-
-    /**
-     * Return tokenized version of a string.
+     * Return tokenized version of a string .
      *
      * @param input
      * @return tokenized version of a string
@@ -106,13 +112,25 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
     public final ArrayList<String> tokenizeToArrayList(final String input) {
         final ArrayList<String> returnArrayList = new ArrayList<String>();
         int curPos = 0;
-        final int length = input.length() - 2;
-        while (curPos < length) {
-            final String term = input.substring(curPos, curPos + 3);
-            if(!stopWordHandler.isWord(term)) {
+        while (curPos < input.length()) {
+            final char ch = input.charAt(curPos);
+            if (Character.isWhitespace(ch)) {
+                curPos++;
+            }
+            int nextGapPos = input.length();
+            //check delimitors
+            for (int i = 0; i < delimiters.length(); i++) {
+                final int testPos = input.indexOf(delimiters.charAt(i), curPos);
+                if (testPos < nextGapPos && testPos != -1) {
+                    nextGapPos = testPos;
+                }
+            }
+            //add new token
+            final String term = input.substring(curPos, nextGapPos);
+            if(!stopWordHandler.isWord(term) && !term.equals(" ")) {
                 returnArrayList.add(term);
             }
-            curPos++;
+            curPos = nextGapPos;
         }
 
         return returnArrayList;
@@ -122,7 +140,7 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
      * Return tokenized set of a string.
      *
      * @param input
-     * @return tokenized version of a string as a set
+     * @return tokenized set of a string
      */
     public Set<String> tokenizeToSet(final String input) {
         final Set<String> returnSet = new HashSet<String>();
@@ -130,4 +148,3 @@ public final class TokeniserQGram3 implements InterfaceTokeniser, Serializable {
         return returnSet;
     }
 }
-

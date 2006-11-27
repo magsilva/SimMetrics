@@ -41,11 +41,10 @@ package uk.ac.shef.wit.simmetrics.tokenisers;
 
 import uk.ac.shef.wit.simmetrics.wordhandlers.InterfaceTermHandler;
 import uk.ac.shef.wit.simmetrics.wordhandlers.DummyStopTermHandler;
-import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 /**
@@ -99,8 +98,8 @@ public final class TokeniserQGram3Extended implements InterfaceTokeniser, Serial
      * @param input
      * @return tokenized version of a string
      */
-    public final Vector tokenize(final String input) {
-        final Vector returnVect = new Vector();
+    public final ArrayList<String> tokenizeToArrayList(final String input) {
+        final ArrayList<String> returnVect = new ArrayList<String>();
         final StringBuffer adjustedString = new StringBuffer();
         adjustedString.append(QGRAMSTARTPADDING);
         adjustedString.append(QGRAMSTARTPADDING);
@@ -142,9 +141,9 @@ public final class TokeniserQGram3Extended implements InterfaceTokeniser, Serial
      * @param input
      * @return tokenized version of a string as a set
      */
-    public Set tokenizeToSet(final String input) {
-        final Set returnSet = new HashSet();
-        returnSet.addAll(tokenize(input));
+    public Set<String> tokenizeToSet(final String input) {
+        final Set<String> returnSet = new HashSet<String>();
+        returnSet.addAll(tokenizeToArrayList(input));
         return returnSet;
     }
 }

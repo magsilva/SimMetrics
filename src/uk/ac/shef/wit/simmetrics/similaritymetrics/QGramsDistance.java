@@ -43,10 +43,7 @@ import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserQGram3Extended;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.similaritymetrics.qgrams
@@ -140,8 +137,8 @@ public final class QGramsDistance extends AbstractStringMetric implements Serial
      * @return a value between 0-1 of the similarity
      */
     public float getSimilarity(final String string1, final String string2) {
-        final Vector<String> str1Tokens = tokeniser.tokenize(string1);
-        final Vector<String> str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
         final int maxQGramsMatching = str1Tokens.size() + str2Tokens.size();
 
@@ -162,8 +159,8 @@ public final class QGramsDistance extends AbstractStringMetric implements Serial
      * @return returns the score of the similarity measure (un-normalised)
      */
     public float getUnNormalisedSimilarity(String string1, String string2) {
-        final Vector<String> str1Tokens = tokeniser.tokenize(string1);
-        final Vector<String> str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
         final Set<String> allTokens = new HashSet<String>();
         allTokens.addAll(str1Tokens);

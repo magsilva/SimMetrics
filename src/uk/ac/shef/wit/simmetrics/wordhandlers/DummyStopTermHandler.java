@@ -39,8 +39,6 @@
 
 package uk.ac.shef.wit.simmetrics.wordhandlers;
 
-import uk.ac.shef.wit.simmetrics.wordhandlers.InterfaceTermHandler;
-
 /**
  * Package: uk.ac.shef.wit.simmetrics.wordhandlers
  * Description: DummyStopTermHandler implements a dummy stop word handling function whereby no stopwords are considered.

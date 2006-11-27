@@ -1,4 +1,4 @@
-package uk.ac.shef.wit.simmetrics;/**
+/**
  * SimMetrics - SimMetrics is a java library of Similarity or Distance
  * Metrics, e.g. Levenshtein Distance, that provide float based similarity
  * measures between String Data. All metrics return consistant measures
@@ -37,12 +37,15 @@ package uk.ac.shef.wit.simmetrics;/**
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
+package uk.ac.shef.wit.simmetrics;
+
 import uk.ac.shef.wit.simmetrics.arbitrators.InterfaceMetricArbitrator;
 import uk.ac.shef.wit.simmetrics.arbitrators.MeanMetricArbitrator;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.*;
+import uk.ac.shef.wit.simmetrics.metrichandlers.MetricHandler;
 
 import java.text.DecimalFormat;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  *
@@ -121,31 +124,16 @@ public final class TestArbitrators {
      */
     public static void main(final String[] args) {
 
-        //create metric vector to use
-        final Vector testMetricVector = new Vector();
-        testMetricVector.add(new Levenshtein());
-        testMetricVector.add(new NeedlemanWunch());
-        testMetricVector.add(new SmithWaterman());
-        testMetricVector.add(new ChapmanLengthDeviation());
-        testMetricVector.add(new ChapmanMeanLength());
-        testMetricVector.add(new SmithWatermanGotoh());
-        testMetricVector.add(new SmithWatermanGotohWindowedAffine());
-        testMetricVector.add(new BlockDistance());
-        testMetricVector.add(new MongeElkan());
-        testMetricVector.add(new Jaro());
-        testMetricVector.add(new JaroWinkler());
-        testMetricVector.add(new Soundex());
-        testMetricVector.add(new ChapmanMatchingSoundex());
-        testMetricVector.add(new MatchingCoefficient());
-        testMetricVector.add(new DiceSimilarity());
-        testMetricVector.add(new JaccardSimilarity());
-        testMetricVector.add(new OverlapCoefficient());
-        testMetricVector.add(new EuclideanDistance());
-        testMetricVector.add(new CosineSimilarity());
-        testMetricVector.add(new QGramsDistance());
+        ArrayList<String> metricStrings = MetricHandler.GetMetricsAvailable();
+
+        //now create each metric in an ArrayList
+        final ArrayList<InterfaceStringMetric> testMetricArrayList = new ArrayList<InterfaceStringMetric>();
+        for(String metricString : metricStrings) {
+            testMetricArrayList.add(MetricHandler.createMetric(metricString));
+        }
 
         final InterfaceMetricArbitrator arbitrator = new MeanMetricArbitrator();
-        arbitrator.setArbitrationMetrics(testMetricVector);
+        arbitrator.setArbitrationMetrics(testMetricArrayList);
 
         //test metrics
         testMethod(arbitrator);

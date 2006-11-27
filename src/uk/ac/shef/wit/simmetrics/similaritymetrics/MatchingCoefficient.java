@@ -43,7 +43,7 @@ import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.similaritymetrics.matchingcoefficient
@@ -124,8 +124,8 @@ public final class MatchingCoefficient extends AbstractStringMetric implements S
     public float getSimilarityTimingEstimated(final String string1, final String string2) {
         //timed millisecond times with string lengths from 1 + 50 each increment
         //0	0.01	0.03	0.05	0.09	0.12	0.17	0.23	0.3	0.36	0.45	0.53	0.63	0.73	0.85	0.95	1.1	1.21	1.4	1.49	1.69	1.83	2.16	2.18	2.74	2.54	3.46	2.94	3.9	3.38	4.23	3.98	5.49	4.41	5.83	4.95	6.55	5.49	6.77	6.15	7.81	6.55	9.27	7.52	9.23	8.12	11.28	8.83	11.94	9.71	11.94	10.15	12.69	11.28	13.53	11.94	15.62	13.6	16.92	13.53
-        final float str1Tokens = tokeniser.tokenize(string1).size();
-        final float str2Tokens = tokeniser.tokenize(string2).size();
+        final float str1Tokens = tokeniser.tokenizeToArrayList(string1).size();
+        final float str2Tokens = tokeniser.tokenizeToArrayList(string2).size();
         return (str2Tokens * str1Tokens) * ESTIMATEDTIMINGCONST;
     }
 
@@ -137,8 +137,8 @@ public final class MatchingCoefficient extends AbstractStringMetric implements S
      * @return a value between 0-1 of the similarity
      */
     public float getSimilarity(final String string1, final String string2) {
-        final Vector str1Tokens = tokeniser.tokenize(string1);
-        final Vector str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
         final int totalPossible = Math.max(str1Tokens.size(), str2Tokens.size());
         return getUnNormalisedSimilarity(string1, string2) / (float) totalPossible;
@@ -152,8 +152,8 @@ public final class MatchingCoefficient extends AbstractStringMetric implements S
      * @return returns the score of the similarity measure (un-normalised)
      */
     public float getUnNormalisedSimilarity(String string1, String string2) {
-        final Vector<String> str1Tokens = tokeniser.tokenize(string1);
-        final Vector<String> str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
         int totalFound = 0;
         for (Object str1Token : str1Tokens) {

@@ -39,8 +39,6 @@
 
 package uk.ac.shef.wit.simmetrics.wordhandlers;
 
-import uk.ac.shef.wit.simmetrics.wordhandlers.InterfaceTermHandler;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -58,7 +56,7 @@ public final class GenericGazeteerTermHandler implements InterfaceTermHandler {
     /**
      * the wordset the stopword handler uses.
      */
-    private final Set wordSet = new HashSet();
+    private final Set<String> wordSet = new HashSet<String>();
 
     /**
      * adds a term to the intewrface.

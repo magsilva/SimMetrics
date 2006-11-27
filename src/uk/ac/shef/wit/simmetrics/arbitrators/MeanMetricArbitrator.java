@@ -42,7 +42,7 @@ package uk.ac.shef.wit.simmetrics.arbitrators;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.InterfaceStringMetric;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics.arbitrators
@@ -58,14 +58,14 @@ public final class MeanMetricArbitrator implements InterfaceMetricArbitrator, Se
     /**
      * private vector of InterfaceStringMetric's used in the arbitration. 
      */
-    private Vector<InterfaceStringMetric> metricsForArbitration = new Vector<InterfaceStringMetric>();
+    private ArrayList<InterfaceStringMetric> metricsForArbitration = new ArrayList<InterfaceStringMetric>();
 
     /**
      * gets the arbitration metrics used.
      *
      * @return a vector of InterfaceStringMetric's used in the arbitration
      */
-    public Vector<InterfaceStringMetric> getArbitrationMetrics() {
+    public ArrayList<InterfaceStringMetric> getArbitrationMetrics() {
         return metricsForArbitration;
     }
 
@@ -76,7 +76,7 @@ public final class MeanMetricArbitrator implements InterfaceMetricArbitrator, Se
      *
      * NB this does not perform any error checking so make sure the vector contains the correct type.
      */
-    public void setArbitrationMetrics(final Vector<InterfaceStringMetric> arbitrationMetrics) {
+    public void setArbitrationMetrics(final ArrayList<InterfaceStringMetric> arbitrationMetrics) {
         metricsForArbitration = arbitrationMetrics;
     }
 
@@ -96,7 +96,7 @@ public final class MeanMetricArbitrator implements InterfaceMetricArbitrator, Se
      *
      * NB this does not perform any error checking so make sure the vector contains the correct type.
      */
-    public void addArbitrationMetrics(final Vector<InterfaceStringMetric> arbitrationMetrics) {
+    public void addArbitrationMetrics(final ArrayList<InterfaceStringMetric> arbitrationMetrics) {
         metricsForArbitration.addAll(arbitrationMetrics);
     }
 

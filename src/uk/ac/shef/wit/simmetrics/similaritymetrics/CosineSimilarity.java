@@ -41,11 +41,10 @@ package uk.ac.shef.wit.simmetrics.similaritymetrics;
 
 import uk.ac.shef.wit.simmetrics.tokenisers.InterfaceTokeniser;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 /**
@@ -140,13 +139,13 @@ public final class CosineSimilarity extends AbstractStringMetric implements Seri
      * @return a value between 0-1 of the similarity
      */
     public float getSimilarity(final String string1, final String string2) {
-        final Vector str1Tokens = tokeniser.tokenize(string1);
-        final Vector str2Tokens = tokeniser.tokenize(string2);
+        final ArrayList<String> str1Tokens = tokeniser.tokenizeToArrayList(string1);
+        final ArrayList<String> str2Tokens = tokeniser.tokenizeToArrayList(string2);
 
-        final Set allTokens = new HashSet();
+        final Set<String> allTokens = new HashSet<String>();
         allTokens.addAll(str1Tokens);
         final int termsInString1 = allTokens.size();
-        final Set secondStringTokens = new HashSet();
+        final Set<String> secondStringTokens = new HashSet<String>();
         secondStringTokens.addAll(str2Tokens);
         final int termsInString2 = secondStringTokens.size();
 

@@ -39,9 +39,7 @@
 
 package uk.ac.shef.wit.simmetrics;
 
-import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.CosineSimilarity;
+import uk.ac.shef.wit.simmetrics.similaritymetrics.*;
 
 /**
  * Package: uk.ac.shef.wit.simmetrics
@@ -58,7 +56,7 @@ public class SimpleExample {
      *
      * @param args two strings required for comparison
      *
-     * @see SimpleExercise.usage() in the same source file
+     * @see this.usage() in the same source file
      * for more details on the usage instructions
      */
     public static void main(final String[] args) {
@@ -78,8 +76,10 @@ public class SimpleExample {
             // metrics can be employed in most cases, please see the sourceforge
             // SimMetric forums for advice on the best metric to employ in
             // differing situations.
-            AbstractStringMetric metric = new Levenshtein();
+//            AbstractStringMetric metric = new Levenshtein();
 //            AbstractStringMetric metric = new CosineSimilarity();
+//            AbstractStringMetric metric = new EuclideanDistance();
+            AbstractStringMetric metric = new MongeElkan();
 
             //this single line performs the similarity test
             float result = metric.getSimilarity(str1, str2);
@@ -108,6 +108,4 @@ public class SimpleExample {
     public static void usage() {
         System.out.println("Performs a rudimentary string metric comparison from the arguments given.\n\tArgs:\n\t\t1) String1 to compare\n\t\t2)String2 to compare\n\n\tReturns:\n\t\tA standard output (command line of the similarity metric with the given test strings, for more details of this simple class please see the SimpleExample.java source file)");
     }
-
-
 }
