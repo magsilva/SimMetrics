@@ -37,33 +37,23 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package uk.ac.shef.wit.simmetrics.tokenisers;
+package uk.ac.shef.wit.simmetrics.similaritymetrics.costfunctions;
 
 import junit.framework.TestCase;
-
-import java.util.ArrayList;
 
 /**
  * Created by IntelliJ IDEA.
  * User: Administrator
- * Date: 23-Nov-2006
- * Time: 12:04:10
+ * Date: 24-Nov-2006
+ * Time: 10:37:43
  * To change this template use File | Settings | File Templates.
  */
-public class TokeniserQGram2Test  extends TestCase {
+public class AffineGap5_1Test extends TestCase {
 
     /**
-     * internal tokeniser.
+     * costfunction tested.
      */
-    private InterfaceTokeniser tokeniser = null;
-
-    /**
-     * main constructor setting the name of the test case.
-     * @param s
-     */
-    public TokeniserQGram2Test(String s) {
-        super(s);
-    }
+    private InterfaceAffineGapCost costFunction;
 
     /**
      * Sets up the test fixture.
@@ -71,7 +61,7 @@ public class TokeniserQGram2Test  extends TestCase {
      * Called before every test case method.
      */
     protected void setUp() {
-        tokeniser = new TokeniserQGram2();
+        costFunction = new AffineGap5_1();
     }
 
     /**
@@ -86,15 +76,13 @@ public class TokeniserQGram2Test  extends TestCase {
     /**
      * Tests emptying the cart.
      */
-    public void testTokeniseToArrayList() {
-        ArrayList results = tokeniser.tokenizeToArrayList("12345678");
-        assertEquals(7, results.size());
-        assertEquals("ggg12", results.get(0));
-        assertEquals("23", results.get(1));
-        assertEquals("34", results.get(2));
-        assertEquals("45", results.get(3));
-        assertEquals("56", results.get(4));
-        assertEquals("67", results.get(5));
-        assertEquals("78", results.get(6));
+    public void testAll() {
+        final String testString = "hello world AAAAAAA BBB ABCDEF this is a test";
+        assertEquals(10.0f, costFunction.getCost(testString, 0, 6));
+        assertEquals(5.0f, costFunction.getCost(testString, 3, 4));
+        assertEquals(8.0f, costFunction.getCost(testString, 13, 17));
+        assertEquals(7.0f, costFunction.getCost(testString, 19, 22));
+        assertEquals(10.0f, costFunction.getCost(testString, 23, 29));
+        assertEquals(5.0f, costFunction.getCost(testString, 5, 6));
     }
 }

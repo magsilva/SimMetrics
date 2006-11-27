@@ -69,19 +69,32 @@ public class TestSuite extends TestCase {
     }
 
     /**
-     * Tests emptying the cart.
+     * Tests SimMetric code.
      */
-    public void testAll() {
+    static public junit.framework.Test suite() {
+        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.tokenisers.TestSuite("testAllTokenisers"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.TestSuite("testAllSimilarityMetrics"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.arbitrators.TestSuite("testAllArbitrators"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.basiccontainers.TestSuite("testAllBasicContainers"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.math.TestSuite("testAllMath"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.metrichandlers.TestSuite("testAllMetricHandlers"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.task.TestSuite("testAllTask"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.utils.TestSuite("testAllUtils"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.wordhandlers.TestSuite("testAllWordHandlers"));
+        return newSuite;
+    }
 
-        //subpackage tests
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.tokenisers.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.arbitrators.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.basiccontainers.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.math.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.metrichandlers.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.task.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.utils.TestSuite());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.wordhandlers.TestSuite());
+    /**
+     * main method for the junit testing.
+     *
+      * @param args - unused
+     */
+    static public void main(String[] args) {
+        junit.textui.TestRunner runner = new junit.textui.TestRunner();
+        System.exit(
+                    TestRunner.run(runner.getTest(uk.ac.shef.wit.simmetrics.TestSuite.class.getName())).
+                            wasSuccessful() ? 0 : 1
+            );
     }
 }

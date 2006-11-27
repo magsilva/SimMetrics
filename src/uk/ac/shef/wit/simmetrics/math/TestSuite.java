@@ -50,6 +50,15 @@ import junit.textui.TestRunner;
  * To change this template use File | Settings | File Templates.
  */
 public class TestSuite extends TestCase {
+
+    /**
+     * main constructor setting the name of the test case.
+     * @param s
+     */
+    public TestSuite(String s) {
+        super(s);
+    }
+
     /**
      * Sets up the test fixture.
      *
@@ -69,16 +78,24 @@ public class TestSuite extends TestCase {
     }
 
     /**
-     * Tests emptying the cart.
+     * Tests SimMetric code.
      */
-    public void testAll() {
-        //test local package code
-        TestRunner.run(new MathFuncsTest());
+    static public junit.framework.Test testAllMath() {
+        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
+        newSuite.addTest(new MathFuncsTest());
+        return newSuite;
+    }
 
-        /*junit.framework.TestSuite suite = new junit.framework.TestSuite ("Suite Tests");
-
-        suite.addTest (new MathFuncsTest());
-
-        return suite;*/
+    /**
+     * main method for the junit testing.
+     *
+      * @param args - unused
+     */
+    static public void main(String[] args) {
+        junit.textui.TestRunner runner = new junit.textui.TestRunner();
+        System.exit(
+                    TestRunner.run(runner.getTest(uk.ac.shef.wit.simmetrics.math.TestSuite.class.getName())).
+                            wasSuccessful() ? 0 : 1
+            );
     }
 }

@@ -58,6 +58,14 @@ public class TokeniserQGram3ExtendedTest  extends TestCase {
     private InterfaceTokeniser tokeniser = null;
 
     /**
+     * main constructor setting the name of the test case.
+     * @param s
+     */
+    public TokeniserQGram3ExtendedTest(String s) {
+        super(s);
+    }
+
+    /**
      * Sets up the test fixture.
      *
      * Called before every test case method.

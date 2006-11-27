@@ -40,6 +40,7 @@
 package uk.ac.shef.wit.simmetrics.task;
 
 import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 /**
  * Created by IntelliJ IDEA.
@@ -49,6 +50,15 @@ import junit.framework.TestCase;
  * To change this template use File | Settings | File Templates.
  */
 public class TestSuite extends TestCase {
+
+    /**
+     * main constructor setting the name of the test case.
+     * @param s
+     */
+    public TestSuite(String s) {
+        super(s);
+    }
+
     /**
      * Sets up the test fixture.
      *
@@ -68,9 +78,24 @@ public class TestSuite extends TestCase {
     }
 
     /**
-     * Tests emptying the cart.
+     * Tests SimMetric code.
      */
-    public void testAll() {
-        //TestRunner.run(...);
+    static public junit.framework.Test testAllTask() {
+        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
+        //TODO add test cases here
+        return newSuite;
+    }
+
+    /**
+     * main method for the junit testing.
+     *
+      * @param args - unused
+     */
+    static public void main(String[] args) {
+        junit.textui.TestRunner runner = new junit.textui.TestRunner();
+        System.exit(
+                    TestRunner.run(runner.getTest(uk.ac.shef.wit.simmetrics.task.TestSuite.class.getName())).
+                            wasSuccessful() ? 0 : 1
+            );
     }
 }

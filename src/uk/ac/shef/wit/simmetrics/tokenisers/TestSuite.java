@@ -50,6 +50,15 @@ import junit.textui.TestRunner;
  * To change this template use File | Settings | File Templates.
  */
 public class TestSuite extends TestCase {
+
+    /**
+     * main constructor setting the name of the test case.
+     * @param s
+     */
+    public TestSuite(String s) {
+        super(s);
+    }
+
     /**
      * Sets up the test fixture.
      *
@@ -69,14 +78,29 @@ public class TestSuite extends TestCase {
     }
 
     /**
-     * Tests emptying the cart.
+     * Tests SimMetric code.
      */
-    public void testAll() {
-        TestRunner.run(new TokeniserCSVBasicTest());
-        TestRunner.run(new TokeniserQGram2ExtendedTest());
-        TestRunner.run(new TokeniserQGram2Test());
-        TestRunner.run(new TokeniserQGram3ExtendedTest());
-        TestRunner.run(new TokeniserQGram3Test());
-        TestRunner.run(new TokeniserWhitespaceTest());
+    static public junit.framework.Test testAllTokenisers() {
+        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
+        newSuite.addTest(new TokeniserCSVBasicTest("testTokeniseToArrayList"));
+        newSuite.addTest(new TokeniserQGram2ExtendedTest("testTokeniseToArrayList"));
+        newSuite.addTest(new TokeniserQGram2Test("testTokeniseToArrayList"));
+        newSuite.addTest(new TokeniserQGram3ExtendedTest("testTokeniseToArrayList"));
+        newSuite.addTest(new TokeniserQGram3Test("testTokeniseToArrayList"));
+        newSuite.addTest(new TokeniserWhitespaceTest("testTokeniseToArrayList"));
+        return newSuite;
+    }
+
+    /**
+     * main method for the junit testing.
+     *
+      * @param args - unused
+     */
+    static public void main(String[] args) {
+        junit.textui.TestRunner runner = new junit.textui.TestRunner();
+        System.exit(
+                    TestRunner.run(runner.getTest(TestSuite.class.getName())).
+                            wasSuccessful() ? 0 : 1
+            );
     }
 }

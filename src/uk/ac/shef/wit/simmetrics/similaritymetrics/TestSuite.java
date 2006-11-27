@@ -52,6 +52,15 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class TestSuite extends TestCase {
+
+    /**
+     * main constructor setting the name of the test case.
+     * @param s
+     */
+    public TestSuite(String s) {
+        super(s);
+    }
+
     /**
      * Sets up the test fixture.
      *
@@ -71,36 +80,50 @@ public class TestSuite extends TestCase {
     }
 
     /**
-     * Tests emptying the cart.
+     * Tests SimMetric code.
      */
-    public void testAll() {
-        //test packages
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.costfunctions.TestSuite());
+    static public junit.framework.Test testAllSimilarityMetrics() {
+        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.costfunctions.TestSuite("testAllCostFunctions"));
 
         //test local tests
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.BlockDistanceTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.CandidatesTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanLengthDeviationTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanMatchingSoundexTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanMeanLengthTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanOrderedNameCompoundSimilarityTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.CosineSimilarityTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.DiceSimilarityTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.EuclideanDistanceTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.JaccardSimilarityTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.JaroTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinklerTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.LevenshteinTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.MatchingCoefficientTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.MongeElkanTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.NeedlemanWunchTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.OverlapCoefficientTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistanceTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotohTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotohWindowedAffineTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.SoundexTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.TagLinkTest());
-        TestRunner.run(new uk.ac.shef.wit.simmetrics.similaritymetrics.TagLinkTokenTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.BlockDistanceTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.CandidatesTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanLengthDeviationTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanMatchingSoundexTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanMeanLengthTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.ChapmanOrderedNameCompoundSimilarityTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.CosineSimilarityTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.DiceSimilarityTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.EuclideanDistanceTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.JaccardSimilarityTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.JaroTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinklerTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.LevenshteinTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.MatchingCoefficientTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.MongeElkanTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.NeedlemanWunchTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.OverlapCoefficientTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistanceTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotohTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanGotohWindowedAffineTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.SmithWatermanTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.SoundexTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.TagLinkTest());
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.TagLinkTokenTest());
+        return newSuite;
+    }
+
+    /**
+     * main method for the junit testing.
+     *
+      * @param args - unused
+     */
+    static public void main(String[] args) {
+        junit.textui.TestRunner runner = new junit.textui.TestRunner();
+        System.exit(
+                    TestRunner.run(runner.getTest(uk.ac.shef.wit.simmetrics.similaritymetrics.TestSuite.class.getName())).
+                            wasSuccessful() ? 0 : 1
+            );
     }
 }

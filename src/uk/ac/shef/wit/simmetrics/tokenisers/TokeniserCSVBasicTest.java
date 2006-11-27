@@ -58,6 +58,14 @@ public class TokeniserCSVBasicTest  extends TestCase {
     private InterfaceTokeniser tokeniser = null;
 
     /**
+     * main constructor setting the name of the test case.
+     * @param s
+     */
+    public TokeniserCSVBasicTest(String s) {
+        super(s);
+    }
+
+    /**
      * Sets up the test fixture.
      *
      * Called before every test case method.
