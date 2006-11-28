@@ -52,7 +52,7 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.*;
 public class SimpleExample {
 
     /**
-     * runs a simple example
+     * runs a simple example.
      *
      * @param args two strings required for comparison
      *
@@ -97,7 +97,7 @@ public class SimpleExample {
      * @param str1 the first string with which to compare
      * @param str2 the second string to compare with the first
      */
-    public static void outputResult(final float result, final AbstractStringMetric metric, final String str1, final String str2) {
+    private static void outputResult(final float result, final AbstractStringMetric metric, final String str1, final String str2) {
         System.out.println("Using Metric " + metric.getShortDescriptionString() + " on strings \"" + str1 + "\" & \"" + str2 + "\" gives a similarity score of " + result);
 
     }
@@ -105,7 +105,7 @@ public class SimpleExample {
     /**
      * details the usage of the simple example outputing instructions to the standard output.
      */
-    public static void usage() {
+    private static void usage() {
         System.out.println("Performs a rudimentary string metric comparison from the arguments given.\n\tArgs:\n\t\t1) String1 to compare\n\t\t2)String2 to compare\n\n\tReturns:\n\t\tA standard output (command line of the similarity metric with the given test strings, for more details of this simple class please see the SimpleExample.java source file)");
     }
 }

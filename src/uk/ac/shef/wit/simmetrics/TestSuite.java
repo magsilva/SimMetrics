@@ -70,6 +70,8 @@ public class TestSuite extends TestCase {
 
     /**
      * Tests SimMetric code.
+     *
+     * @return Test results of the test
      */
     static public junit.framework.Test suite() {
         junit.framework.TestSuite newSuite = new junit.framework.TestSuite();

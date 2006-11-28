@@ -55,7 +55,7 @@ public class TestSuite extends TestCase {
 
     /**
      * main constructor setting the name of the test case.
-     * @param s
+     * @param s the name of the test
      */
     public TestSuite(String s) {
         super(s);
@@ -81,6 +81,8 @@ public class TestSuite extends TestCase {
 
     /**
      * Tests SimMetric code.
+     *
+     * @return Test results of the test
      */
     static public junit.framework.Test testAllArbitrators() {
         junit.framework.TestSuite newSuite = new junit.framework.TestSuite();

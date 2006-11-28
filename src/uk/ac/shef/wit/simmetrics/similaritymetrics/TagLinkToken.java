@@ -59,7 +59,7 @@ public final class TagLinkToken extends AbstractStringMetric implements Serializ
      *
      * @param tr float
      */
-    public TagLinkToken(float tr) {
+    private TagLinkToken(float tr) {
         this.tr = tr;
     }
 

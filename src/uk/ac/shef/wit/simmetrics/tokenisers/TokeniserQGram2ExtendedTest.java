@@ -59,7 +59,8 @@ public class TokeniserQGram2ExtendedTest  extends TestCase {
 
     /**
      * main constructor setting the name of the test case.
-     * @param s
+     *
+     * @param s The name of the test
      */
     public TokeniserQGram2ExtendedTest(String s) {
         super(s);

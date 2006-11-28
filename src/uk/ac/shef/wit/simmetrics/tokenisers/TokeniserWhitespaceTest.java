@@ -59,7 +59,8 @@ public class TokeniserWhitespaceTest  extends TestCase {
 
     /**
      * main constructor setting the name of the test case.
-     * @param s
+     *
+     * @param s The name of the test
      */
     public TokeniserWhitespaceTest(String s) {
         super(s);

@@ -152,7 +152,10 @@ public final class TestMetrics {
         testMethod(testMetricArrayList, args);
     }
 
-    public static void Usage() {
+    /**
+     * details the usage of the class from command line instatiation.
+     */
+    private static void Usage() {
         System.out.println("Usage: testMethod \"String1 to Test\" \"String2 to test\"");
         System.out.println("or");
         System.out.println("Usage: testMethod \"timing");
