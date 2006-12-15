@@ -76,7 +76,7 @@ public class EuclideanDistanceTest extends TestCase {
 
         float result = metric.getSimilarity("Test String1", "Test String2");
 
-        assertEquals(0.29289323f, result);
+        assertEquals(0.5f, result);
     }
 }
 
