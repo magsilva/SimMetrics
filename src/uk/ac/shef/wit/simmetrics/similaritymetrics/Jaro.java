@@ -115,14 +115,14 @@ public final class Jaro extends AbstractStringMetric implements Serializable {
     /**
      * gets the similarity of the two strings using Jaro distance.
      *
-     * @param string1
-     * @param string2
+     * @param string1 the first input string
+     * @param string2 the second input string
      * @return a value between 0-1 of the similarity
      */
     public float getSimilarity(final String string1, final String string2) {
 
-        //get half the lengthg of the string rounded up - (this is the distance used for acceptable transpositions)
-        final int halflen = ((Math.min(string1.length(), string2.length())) / 2) + 1;
+        //get half the length of the string rounded up - (this is the distance used for acceptable transpositions)
+        final int halflen = ((Math.min(string1.length(), string2.length())) / 2) + ((Math.min(string1.length(), string2.length())) % 2);
 
         //get common characters
         final StringBuffer common1 = getCommonCharacters(string1, string2, halflen);
@@ -185,7 +185,7 @@ public final class Jaro extends AbstractStringMetric implements Serializable {
             //set boolean for quick loop exit if found
             boolean foundIt = false;
             //compare char with range of characters to either side
-            for (int j = Math.max(0, i - distanceSep); !foundIt && j < Math.min(i + distanceSep, string2.length()); j++) {
+            for (int j = Math.max(0, i - distanceSep); !foundIt && j < Math.min(i + distanceSep, string2.length() - 1); j++) {
                 //check if found
                 if (copy.charAt(j) == ch) {
                     foundIt = true;
