@@ -37,29 +37,21 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package uk.ac.shef.wit.simmetrics.arbitrators;
+package uk.ac.shef.wit.simmetrics.similaritymetrics;
+
+import org.junit.Ignore;
 
 import junit.framework.TestCase;
-import junit.textui.TestRunner;
-
-import java.util.ArrayList;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Administrator
- * Date: 23-Nov-2006
- * Time: 13:15:07
- * To change this template use File | Settings | File Templates.
+ * Performs a unit test upon the ChapmanOrderedNameCompoundSimilarity string metric.
+ *
+ * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
  */
-public class TestSuite extends TestCase {
+public class ChapmanOrderedNameCompoundSimilarityTest extends TestCase {
 
-    /**
-     * main constructor setting the name of the test case.
-     * @param s the name of the test
-     */
-    public TestSuite(String s) {
-        super(s);
-    }
+    //private method to hold metric test cases
+    private AbstractStringMetric metric;
 
     /**
      * Sets up the test fixture.
@@ -67,7 +59,7 @@ public class TestSuite extends TestCase {
      * Called before every test case method.
      */
     protected void setUp() {
-        //create objects for testing
+        metric = new ChapmanOrderedNameCompoundSimilarity();
     }
 
     /**
@@ -80,26 +72,14 @@ public class TestSuite extends TestCase {
     }
 
     /**
-     * Tests SimMetric code.
-     *
-     * @return Test results of the test
+     * Tests emptying the cart.
      */
-    static public junit.framework.Test testAllArbitrators() {
-        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
-        //TODO add test cases here
-        return newSuite;
-    }
+    @Ignore
+    public void testGetSimilarity() {
 
-    /**
-     * main method for the junit testing.
-     *
-      * @param args - unused
-     */
-    static public void main(String[] args) {
-        junit.textui.TestRunner runner = new junit.textui.TestRunner();
-        System.exit(
-                    TestRunner.run(runner.getTest(uk.ac.shef.wit.simmetrics.arbitrators.TestSuite.class.getName())).
-                            wasSuccessful() ? 0 : 1
-            );
+        float result = metric.getSimilarity("Test String1", "Test String2");
+
+        assertEquals(0.9553572f, result);
     }
 }
+

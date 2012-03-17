@@ -37,19 +37,36 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package uk.ac.shef.wit.simmetrics.similaritymetrics;
+package uk.ac.shef.wit.simmetrics.tokenisers;
 
 import junit.framework.TestCase;
 
-/**
- * Performs a unit test upon the ChapmanMatchingSoundex string metric.
- *
- * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
- */
-public class ChapmanMatchingSoundexTest extends TestCase {
+import java.util.ArrayList;
 
-    //private method to hold metric test cases
-    private AbstractStringMetric metric;
+import org.junit.Ignore;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: Administrator
+ * Date: 23-Nov-2006
+ * Time: 12:04:10
+ * To change this template use File | Settings | File Templates.
+ */
+public class TokeniserCSVBasicTest  extends TestCase {
+
+    /**
+     * internal tokeniser.
+     */
+    private InterfaceTokeniser tokeniser = null;
+
+    /**
+     * main constructor setting the name of the test case.
+     *
+     * @param s The name of the test
+     */
+    public TokeniserCSVBasicTest(String s) {
+        super(s);
+    }
 
     /**
      * Sets up the test fixture.
@@ -57,7 +74,7 @@ public class ChapmanMatchingSoundexTest extends TestCase {
      * Called before every test case method.
      */
     protected void setUp() {
-        metric = new ChapmanMatchingSoundex();
+        tokeniser = new TokeniserCSVBasic();
     }
 
     /**
@@ -72,11 +89,17 @@ public class ChapmanMatchingSoundexTest extends TestCase {
     /**
      * Tests emptying the cart.
      */
-    public void testGetSimilarity() {
-
-        float result = metric.getSimilarity("Test String1", "Test String2");
-
-        assertEquals(1.0f, result);
+    @Ignore
+    public void testTokeniseToArrayList() {
+        ArrayList results = tokeniser.tokenizeToArrayList("1a,2a,3a,4a\n1b,2b,3b,4b");
+        assertEquals(1, results.size());
+        assertEquals("1a", results.get(0));
+        assertEquals("2a", results.get(1));
+        assertEquals("3a", results.get(2));
+        assertEquals("4a", results.get(3));
+        assertEquals("1b", results.get(4));
+        assertEquals("2b", results.get(5));
+        assertEquals("3b", results.get(6));
+        assertEquals("4b", results.get(7));
     }
 }
-

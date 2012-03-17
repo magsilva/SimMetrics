@@ -37,19 +37,34 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package uk.ac.shef.wit.simmetrics.similaritymetrics;
+package uk.ac.shef.wit.simmetrics.tokenisers;
 
 import junit.framework.TestCase;
 
-/**
- * Performs a unit test upon the TagLinkToken string metric.
- *
- * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
- */
-public class TagLinkTokenTest extends TestCase {
+import java.util.ArrayList;
 
-    //private method to hold metric test cases
-    private AbstractStringMetric metric;
+/**
+ * Created by IntelliJ IDEA.
+ * User: Administrator
+ * Date: 23-Nov-2006
+ * Time: 12:04:10
+ * To change this template use File | Settings | File Templates.
+ */
+public class TokeniserQGram2Test  extends TestCase {
+
+    /**
+     * internal tokeniser.
+     */
+    private InterfaceTokeniser tokeniser = null;
+
+    /**
+     * main constructor setting the name of the test case.
+     *
+     * @param s The name of the test
+     */
+    public TokeniserQGram2Test(String s) {
+        super(s);
+    }
 
     /**
      * Sets up the test fixture.
@@ -57,7 +72,7 @@ public class TagLinkTokenTest extends TestCase {
      * Called before every test case method.
      */
     protected void setUp() {
-        metric = new TagLinkToken();
+        tokeniser = new TokeniserQGram2();
     }
 
     /**
@@ -72,11 +87,15 @@ public class TagLinkTokenTest extends TestCase {
     /**
      * Tests emptying the cart.
      */
-    public void testGetSimilarity() {
-
-        float result = metric.getSimilarity("Test String1", "Test String2");
-
-        assertEquals(0.9166667f, result);
+    public void testTokeniseToArrayList() {
+        ArrayList results = tokeniser.tokenizeToArrayList("12345678");
+        assertEquals(7, results.size());
+        assertEquals("12", results.get(0));
+        assertEquals("23", results.get(1));
+        assertEquals("34", results.get(2));
+        assertEquals("45", results.get(3));
+        assertEquals("56", results.get(4));
+        assertEquals("67", results.get(5));
+        assertEquals("78", results.get(6));
     }
 }
-

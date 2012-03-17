@@ -37,9 +37,10 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package uk.ac.shef.wit.simmetrics.tokenisers;
+package uk.ac.shef.wit.simmetrics.arbritrators;
 
 import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 import java.util.ArrayList;
 
@@ -47,22 +48,16 @@ import java.util.ArrayList;
  * Created by IntelliJ IDEA.
  * User: Administrator
  * Date: 23-Nov-2006
- * Time: 12:04:10
+ * Time: 13:15:07
  * To change this template use File | Settings | File Templates.
  */
-public class TokeniserQGram2Test  extends TestCase {
-
-    /**
-     * internal tokeniser.
-     */
-    private InterfaceTokeniser tokeniser = null;
+public class TestSuite extends TestCase {
 
     /**
      * main constructor setting the name of the test case.
-     *
-     * @param s The name of the test
+     * @param s the name of the test
      */
-    public TokeniserQGram2Test(String s) {
+    public TestSuite(String s) {
         super(s);
     }
 
@@ -72,7 +67,7 @@ public class TokeniserQGram2Test  extends TestCase {
      * Called before every test case method.
      */
     protected void setUp() {
-        tokeniser = new TokeniserQGram2();
+        //create objects for testing
     }
 
     /**
@@ -85,17 +80,26 @@ public class TokeniserQGram2Test  extends TestCase {
     }
 
     /**
-     * Tests emptying the cart.
+     * Tests SimMetric code.
+     *
+     * @return Test results of the test
      */
-    public void testTokeniseToArrayList() {
-        ArrayList results = tokeniser.tokenizeToArrayList("12345678");
-        assertEquals(7, results.size());
-        assertEquals("ggg12", results.get(0));
-        assertEquals("23", results.get(1));
-        assertEquals("34", results.get(2));
-        assertEquals("45", results.get(3));
-        assertEquals("56", results.get(4));
-        assertEquals("67", results.get(5));
-        assertEquals("78", results.get(6));
+    static public junit.framework.Test testAllArbitrators() {
+        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
+        //TODO add test cases here
+        return newSuite;
+    }
+
+    /**
+     * main method for the junit testing.
+     *
+      * @param args - unused
+     */
+    static public void main(String[] args) {
+        junit.textui.TestRunner runner = new junit.textui.TestRunner();
+        System.exit(
+                    TestRunner.run(runner.getTest(uk.ac.shef.wit.simmetrics.arbritrators.TestSuite.class.getName())).
+                            wasSuccessful() ? 0 : 1
+            );
     }
 }

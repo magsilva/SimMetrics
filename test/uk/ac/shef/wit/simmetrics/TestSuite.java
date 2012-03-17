@@ -37,27 +37,26 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-package uk.ac.shef.wit.simmetrics.similaritymetrics;
+package uk.ac.shef.wit.simmetrics;
 
 import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 /**
- * Performs a unit test upon the ChapmanOrderedNameCompoundSimilarity string metric.
- *
- * @author Sam Chapman <a href="http://www.dcs.shef.ac.uk/~sam/">Website</a>, <a href="mailto:sam@dcs.shef.ac.uk">Email</a>.
+ * Created by IntelliJ IDEA.
+ * User: Administrator
+ * Date: 23-Nov-2006
+ * Time: 13:15:07
+ * To change this template use File | Settings | File Templates.
  */
-public class ChapmanOrderedNameCompoundSimilarityTest extends TestCase {
-
-    //private method to hold metric test cases
-    private AbstractStringMetric metric;
-
+public class TestSuite extends TestCase {
     /**
      * Sets up the test fixture.
      *
      * Called before every test case method.
      */
     protected void setUp() {
-        metric = new ChapmanOrderedNameCompoundSimilarity();
+        //create objects for testing
     }
 
     /**
@@ -70,13 +69,34 @@ public class ChapmanOrderedNameCompoundSimilarityTest extends TestCase {
     }
 
     /**
-     * Tests emptying the cart.
+     * Tests SimMetric code.
+     *
+     * @return Test results of the test
      */
-    public void testGetSimilarity() {
+    static public junit.framework.Test suite() {
+        junit.framework.TestSuite newSuite = new junit.framework.TestSuite();
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.tokenisers.TestSuite("testAllTokenisers"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.similaritymetrics.TestSuite("testAllSimilarityMetrics"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.arbritrators.TestSuite("testAllArbitrators"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.basiccontainers.TestSuite("testAllBasicContainers"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.math.TestSuite("testAllMath"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.metrichandlers.TestSuite("testAllMetricHandlers"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.task.TestSuite("testAllTask"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.utils.TestSuite("testAllUtils"));
+        newSuite.addTest(new uk.ac.shef.wit.simmetrics.wordhandlers.TestSuite("testAllWordHandlers"));
+        return newSuite;
+    }
 
-        float result = metric.getSimilarity("Test String1", "Test String2");
-
-        assertEquals(0.9553572f, result);
+    /**
+     * main method for the junit testing.
+     *
+      * @param args - unused
+     */
+    static public void main(String[] args) {
+        junit.textui.TestRunner runner = new junit.textui.TestRunner();
+        System.exit(
+                    TestRunner.run(runner.getTest(uk.ac.shef.wit.simmetrics.TestSuite.class.getName())).
+                            wasSuccessful() ? 0 : 1
+            );
     }
 }
-

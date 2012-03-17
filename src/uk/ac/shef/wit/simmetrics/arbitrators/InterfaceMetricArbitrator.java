@@ -46,6 +46,8 @@ import java.util.ArrayList;
 /**
  * Package: uk.ac.shef.wit.simmetrics.api
  * Description: InterfaceMetricArbitrator provides an interface for a metric arbitrator.
+ * 
+ * Arbitrators for the combination of metrics within the SimMetrics similarity equivalence library.
  * Date: 29-Apr-2004
  * Time: 11:48:58
  * 
