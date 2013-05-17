@@ -27,9 +27,8 @@
 
 	<distributionManagement>
 		<repository>
-			<id>labes-icmc-usp</id>
-			<name>labes-icmc-usp</name>
-			<url>http://www.ironiacorp.com/Apps/Artifactory/ext-release-local</url>
+			<id>IroniaCorp</id>
+			<url>dav:http://www.ironiacorp.com/repo/maven2</url>
 		</repository>
 	</distributionManagement>
 
@@ -43,8 +42,8 @@
 		</repository>
 				
 		<repository>
-			<id>LabES repository</id>
-			<url>http://www.ironiacorp.com/Apps/Artifactory/repo</url>
+			<id>IroniaCorp</id>
+			<url>http://www.ironiacorp.com/repo/maven2</url>
 			<releases>
 				<updatePolicy>never</updatePolicy>
 			</releases>
@@ -85,17 +84,25 @@
 			</testResource>
 		</testResources>
 
+		<extensions>
+                        <extension>
+                                <groupId>org.apache.maven.wagon</groupId>
+                                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                                <version>2.4</version>
+                        </extension>
+		</extensions>
+		
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.1</version>
 				<configuration>
 					<fork>true</fork>
 					<meminitial>128m</meminitial>
 					<maxmem>512m</maxmem>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>
